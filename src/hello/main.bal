@@ -13,7 +13,8 @@ service hello on new http:Listener(9090) {
     }
     resource function sayHello(http:Caller caller, http:Request req, string name) {
         http:Response response = new();
-        response.setPayload("Hello, " + name + "!\n");
+        var payload = "Hello, " + name + "!";
+        response.setPayload(payload);
         var result = caller->respond(response);
 
         if (result is error) {
