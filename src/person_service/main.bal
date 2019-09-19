@@ -20,9 +20,9 @@ service PersonService on new http:Listener(9090) {
     }
     resource function bindJsonPerson(http:Caller caller, http:Request req, Person person) {
         http:Response response = new();
-        response.setPayload({Name: <@untainted> person.name, 
-                Age: <@untainted> person.age, 
-                FavoriteBeers: <@untainted> person.favoriteBeers});
+        response.setPayload({name: <@untainted> person.name,
+                age: <@untainted> person.age,
+                favoriteBeers: <@untainted> person.favoriteBeers});
         var result = caller->respond(response);
         if (result is error) {
             log:printError("An error occurred", result);

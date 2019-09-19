@@ -6,11 +6,13 @@ import ballerina/test;
 function testBindJsonPerson() {
     http:Client clientEndpoint = new("http://localhost:9090/PersonService");
 
-    var jsonData = "{ Name: 'Bruce Snyder', Age: 48, FavoriteBeers: {1: 'Belgian', 2: 'IPA', 3: 'Sour' }}";
-    var response = clientEndpoint->post("/bindJson", jsonData);
+    json jsonData = "{ name: 'Bruce Snyder', age: 48, favoriteBeers: {1: 'Belgian', 2: 'IPA', 3: 'Sour' }}";
+    var response = clientEndpoint->post("/bindJsonPerson", jsonData);
     
     if (response is http:Response) {
         var payload = response.getTextPayload();
+        test:assertEquals(payload, jsonData);
+
         if (payload is string) {
             io:println(payload);
         } else {
