@@ -1,1 +1,8 @@
+# Ballerina
 target
+
+# IntelliJ IDEA
+.idea
+
+# Visual Studio Code
+.vscode
